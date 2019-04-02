@@ -9,21 +9,23 @@ class Crawler(metaclass=ABCMeta) :
     platform_url = None
     platform_name = None
 
-    def __init(self, platform_name, platform_url):
-        self.platform_name = platform_name
-        self.platform_url = platform_url
+    @abstractmethod
+    def __init__(self, name, url):
+        self.name = name
+        self.url = url
 
+    @abstractmethod
     def showDevInfo(self, date="2019.04.02"):
         '''
         show platform basic info
         :param date: String; the last update date for maintenance, should update manually
         :return: None
         '''
-        print("Platform: {platform_name}\n" \
-              "Url: {platform_url}\n" \
-              "Last update : {date}".format(platform_name=self.platform_name, platform_url=self.platform_url, date=date))
+        print("Name: {name}\n" \
+              "Url: {url}\n" \
+              "Last update : {date}".format(name=self.name, url=self.url, date=date))
 
-
+    @abstractmethod
     def getPageHtml(self, page_url):
         '''
         get html string of the page with bs4
@@ -34,6 +36,18 @@ class Crawler(metaclass=ABCMeta) :
         _page_source = requests.get(page_url)
         page_source = _page_source.text
         return page_source
+
+class PlatformCrawler(Crawler):
+    @abstractmethod
+    def __init__(self, name, url):
+        super(name, url)
+
+    @abstractmethod
+    def showDevInfo(self, date="2019.04.02"):
+        super(date)
+
+    def getPageHtml(self, page_url):
+        super(page_url)
 
     @abstractmethod
     def getBrandUrlList(self):
@@ -68,3 +82,19 @@ class Crawler(metaclass=ABCMeta) :
         :return: String
         '''
         return self.getPageHtml(product_url)
+
+
+class CommunityCrawler(Crawler):
+    @abstractmethod
+    def __init__(self, name, url):
+        super(name, url)
+
+    @abstractmethod
+    def showDevInfo(self, date="2019.04.02"):
+        super(date)
+
+    @abstractmethod
+    def getPageHtml(self, page_url):
+        super(page_url)
+
+    pass
