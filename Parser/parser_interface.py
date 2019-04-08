@@ -58,6 +58,7 @@ class PlatformParser(Parser):
         '''
         pass
 
+
     @abstractmethod
     def getSizeInfo_image(self):
         '''

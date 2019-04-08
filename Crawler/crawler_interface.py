@@ -1,5 +1,13 @@
 from abc import *
 
+'''
+HOW TO RUN selenium-chrome ON NON-DISPLAY env
+1. apt-get install chromium-browser
+2. apt-get install xvfb
+3. pip install pyvirtualdisplay
+4. Call pyvirtualdisplay.Display befroe using selenium
+5. Don't forget to use Chromedriver ver.0.73 for linux64
+'''
 
 class Crawler(metaclass=ABCMeta) :
     '''
